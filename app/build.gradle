@@ -11,7 +11,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.uplexa.androidminer"
+        applicationId "io.fuegox.androidminer"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 4

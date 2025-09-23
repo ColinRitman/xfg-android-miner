@@ -1,6 +1,6 @@
-# UPX ANDROID MINER
+# XFG ANDROID MINER
 
-The first optimized android miner running on a blockchain created for IoT mining (uPlexa).
+The first optimized android miner for Fuego (XFG) - privacy-focused cryptocurrency built by advocates for freedom through sound money.
 
 <img src="./screenshots/1.png" height="400" />
 <img src="./screenshots/2.png" height="400" />
@@ -10,7 +10,7 @@ The first optimized android miner running on a blockchain created for IoT mining
 
 This will currently only work on devices with ARM64 architecture.
 
-Run the app, enter your UPX address, select a pool, start mining!
+Run the app, enter your XFG address (starting with 'fire'), select a pool, start mining!
 
 # Notes
 
