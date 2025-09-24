@@ -93,19 +93,19 @@ public final class ProviderManager {
         // User Defined
         add("custom", "custom", "3333", 0, "custom", "");
 
-        // Fuego XFG Official pool
+        // LoudMining XFG Pool - Main Pool
         add(
-                "LoudMining XFG Pool",
+                "LOUD Mining - XFG Pool",
                 "xfg.loudmining.com",
                 "9999",
                 3, // CryptonoteNodeJS
-                "https://xfg.loudmining.com",
+                "https://loudmining.com/xfg",
                 "45.32.171.89",
                 "https://xfg.loudmining.com/api"
         );
 
-        // More pools can be added later
-        // Keep legacy pool types for compatibility
+        // Additional pool configurations can be added here
+        // Pool types: 0=Custom, 2=NodeJS, 3=CryptonoteNodeJS, 4=IoTProxy
 
 
     }
