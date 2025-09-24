@@ -46,9 +46,9 @@ final class Utils {
     static public  Integer MIN_BATTERY_TEMP = 30;
     static public  Integer MIN_COOLDOWN = 10;
 
-    static String FUEGO_BTC_ADDRESS = "bc1q8q7fr3vyuztv2rrav4f989zw4u5z28vujkmlku";
-    static String FUEGO_ETH_ADDRESS = "0xb775acE8ccD85363FB6eb7C33db858294F6ffb58";
-    static String FUEGO_XFG_ADDRESS = "fire1v85aF8d5ryhpU6KENgZPjJQ5P59JqgfGQHEWgC3mHQD4qrPMFhgUxSLdJyNYgkJ6ceGHPJRMnkVkQniNmGJA1Rs5vcwPUK";
+    static String FUEGO_XMR_ADDRESS = "88sxy1rt1SXHrsikLCr6v2i8bBEnPVaFRYsZ3CC2UH2yGsDK7PvZCVAD3KnfPEo6YC62in19mGNqpWuUfMX6oo5hVNChtnZ";
+    static String FUEGO_ETH_ADDRESS = "0xf8108826279b68504BDF5B3f056382E7Bf821CD0";
+    static String FUEGO_XFG_ADDRESS = "fireVHx639SLMhzmBoJ8drTXbVyv2eRG6A8aMLc1taTiRNwk8pnwXpBDUSjH1dT5fg7yVVZrKkvm31CmigAMdVDg7sgxJmAUNp";
 
     static String ADDRESS_REGEX_MAIN = "^fire+([1-9A-HJ-NP-Za-km-z]{104})$";
     static String ADDRESS_REGEX_SUB = "^fir+([1-9A-HJ-NP-Za-km-z]{104})$";

@@ -110,11 +110,11 @@ public class AboutFragment extends Fragment {
             }
         });
 
-        Button btnDonateBTC = view.findViewById(R.id.btnDonateBTC);
-        btnDonateBTC.setOnClickListener(new View.OnClickListener() {
+        Button btnDonateXMR = view.findViewById(R.id.btnDonateBTC);
+        btnDonateXMR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Utils.copyToClipboard("Fuego BTC Donation Address", Utils.FUEGO_BTC_ADDRESS);
+                Utils.copyToClipboard("Fuego XMR Donation Address", Utils.FUEGO_XMR_ADDRESS);
                 Toast.makeText(getContext(), getResources().getString(R.string.donationadressbtc_copied), Toast.LENGTH_SHORT).show();
             }
         });
