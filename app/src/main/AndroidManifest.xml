@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="io.fuegox.androidminer"
+<manifest package="io.fuegoxfg.androidminer"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -29,14 +29,14 @@
             android:resource="@color/c_white" />
 
         <activity
-            android:name="io.fuegox.androidminer.MainActivity"
+            android:name="io.fuegoxfg.androidminer.MainActivity"
             android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="adjustPan|stateHidden"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
         <activity
-            android:name="io.fuegox.androidminer.SplashActivity">
+            android:name="io.fuegoxfg.androidminer.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -44,41 +44,41 @@
         </activity>
 
 	    <activity
-            android:name="io.fuegox.androidminer.QrCodeScannerActivity"
-            android:parentActivityName="io.fuegox.androidminer.MainActivity">
+            android:name="io.fuegoxfg.androidminer.QrCodeScannerActivity"
+            android:parentActivityName="io.fuegoxfg.androidminer.MainActivity">
         </activity>
 
         <activity
-            android:name="io.fuegox.androidminer.WizardHomeActivity"
-            android:parentActivityName="io.fuegox.androidminer.MainActivity">
+            android:name="io.fuegoxfg.androidminer.WizardHomeActivity"
+            android:parentActivityName="io.fuegoxfg.androidminer.MainActivity">
         </activity>
 
         <activity
-            android:name="io.fuegox.androidminer.WizardAddressActivity"
-            android:parentActivityName="io.fuegox.androidminer.MainActivity">
+            android:name="io.fuegoxfg.androidminer.WizardAddressActivity"
+            android:parentActivityName="io.fuegoxfg.androidminer.MainActivity">
         </activity>
 
         <activity
-            android:name="io.fuegox.androidminer.WizardPoolActivity"
-            android:parentActivityName="io.fuegox.androidminer.MainActivity">
+            android:name="io.fuegoxfg.androidminer.WizardPoolActivity"
+            android:parentActivityName="io.fuegoxfg.androidminer.MainActivity">
         </activity>
 
         <activity
-            android:name="io.fuegox.androidminer.WizardSettingsActivity"
-            android:parentActivityName="io.fuegox.androidminer.MainActivity">
+            android:name="io.fuegoxfg.androidminer.WizardSettingsActivity"
+            android:parentActivityName="io.fuegoxfg.androidminer.MainActivity">
         </activity>
 
         <activity
-            android:name="io.fuegox.androidminer.BaseActivity"
-            android:parentActivityName="io.fuegox.androidminer.MainActivity">
+            android:name="io.fuegoxfg.androidminer.BaseActivity"
+            android:parentActivityName="io.fuegoxfg.androidminer.MainActivity">
         </activity>
 
         <service
-            android:name="io.fuegox.androidminer.MiningService"
+            android:name="io.fuegoxfg.androidminer.MiningService"
             android:enabled="true"/>
 
         <receiver
-            android:name="io.fuegox.androidminer.NotificationsReceiver"
+            android:name="io.fuegoxfg.androidminer.NotificationsReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="OPEN_ACTION"/>
