@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">UPX Android Miner</string>
+    <string name="app_name">XFG Android Miner</string>
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
     <string name="mining_pool_address">Mining pool URL</string>
@@ -62,17 +62,17 @@
     <string name="startmining">I am ready!</string>
     <string name="mininglog">Mining Log</string>
 
-    <string name="githubLink">https://github.com/n3alz/upx-android-miner/releases</string>
-    <string name="discordLink">https://discord.gg/a7mAQwJ</string>
-    <string name="mediumLink">https://medium.com/@uplexa</string>
-    <string name="twitterLink">https://twitter.com/uPlexaCoin</string>
-    <string name="telegramLink">https://t.me/uplexaOfficial</string>
-    <string name="uPlexaLink">&lt;a href=&quot;https://uplexa.com&quot;&gt;uPlexa&lt;/a&gt;</string>
+    <string name="githubLink">https://github.com/usexfg/xfg-android-miner/releases</string>
+    <string name="discordLink">https://discord.gg/5UJcJJg</string>
+    <string name="mediumLink">https://medium.com/@usexfg</string>
+    <string name="twitterLink">https://twitter.com/useXFG</string>
+    <string name="telegramLink">https://t.me/xfgofficial</string>
+    <string name="fuegoLink">&lt;a href=&quot;https://usexfg.org&quot;&gt;Fuego&lt;/a&gt;</string>
     <string name="Mine2getherLink">&lt;a href=&quot;https://github.com/Mine2Gether/m2g_android_miner&quot;&gt;Mine2gether&lt;/a&gt;</string>
     <string name="MoneroMinerLink">&lt;a href=&quot;https://github.com/upost/MoneroMiner&quot;&gt;MoneroMiner&lt;/a&gt;</string>
     <string name="MaterialDesignLink">&lt;a href=&quot;https://material.io/resources/&quot;&gt;Material Design&lt;/a&gt;</string>
     <string name="FontAwesomeLink">&lt;a href=&quot;https://fontawesome.com/license&quot;&gt;Font Awesome&lt;/a&gt;</string>
-    <string name="amaycPostLink">https://amayc.uplexa.com/</string>
+    <string name="amaycPostLink">https://amayc.xfg.network/</string>
     <string name="maxtemperaturereached">Temperature threshold reached!</string>
     <string name="resumedmining">Temperatures have reached safe levels. Resumed mining.</string>
     <string name="pauseonmining">Put device on charge to enable mining.</string>
@@ -93,12 +93,12 @@
     <string name="amaycpaused">Cannot resume mining when device is cooling</string>
     <string name="amaycerror">AMAYC: Cannot reach distant server.</string>
     <string name="miningpaused">Mining paused until temperatures return to safe levels.</string>
-    <string name="miningbackground">uPlexa Android Miner is still mining in the background.</string>
+    <string name="miningbackground">Fuego Android Miner is still mining in the background.</string>
     <string name="donationsinfo">Donations support the contributors and help pay for the project infrastructure.</string>
     <string name="donationadresses">Donations</string>
-    <string name="donationadressbtc_copied">BTC Donation Address copied.</string>
+    <string name="donationadressbtc_copied">XMR Donation Address copied.</string>
     <string name="donationadresseth_copied">ETH Donation Address copied.</string>
-    <string name="donationadressupx_copied">UPX Donation Address copied.</string>
+    <string name="donationadressupx_copied">XFG Donation Address copied.</string>
     <string name="statictempcontrol">Switched to static temperature control.</string>
     <string name="debuginfo">Debug Info</string>
     <string name="debuginfo_copied">Debug Information copied.</string>
@@ -106,13 +106,13 @@
     <string name="usernameparametershint">Username parameters</string>
     <string name="workernamehint">Worker name or password</string>
     <string name="landingpage_headline">Mine your android devices harmlessly and efficiently</string>
-    <string name="landingpage_introduction">uPlexa Android Miner provides useful information about your mining activities and prevents your device from overheating.</string>
+    <string name="landingpage_introduction">Fuego Android Miner provides useful information about your mining activities and prevents your device from overheating.</string>
     <string name="createaddress">Get a wallet</string>
     <string name="disclaimer_agreement">By using this application, you confirm your knowledge and acceptance of the Disclaimer</string>
     <string name="paper">Paper</string>
     <string name="or">or</string>
     <string name="skip">Skip</string>
-    <string name="uplexa_vault_play_store">https://play.google.com/store/apps/details?id=com.uplexa.upxwallet</string>
+    <string name="uplexa_vault_play_store">https://play.google.com/store/apps/details?id=com.fuego.xfgwallet</string>
     <string name="ok">OK</string>
     <string name="save">Save</string>
     <string name="devicemining">Device Mining</string>
@@ -132,18 +132,18 @@
     <string name="miners">Miners</string>
     <string name="advanced">Advanced</string>
     <string name="supporttheproject">Do you want to support the project?</string>
-    <string name="minetouplexa">The uPlexa donation address will then be used for mining.</string>
+    <string name="minetouplexa">The Fuego donation address will then be used for mining.</string>
     <string name="sure">Sure!</string>
     <string name="nothanks">Nope.</string>
     <string name="stopmining">Do you want to restart mining?</string>
     <string name="newparametersapplied">The mining process must be restarted in order for the new parameters to be applied.</string>
 
-    <string name="donate_help">If you would like to help build this project, feel free to specify a donation level here.\n\nFor example, a value of 5 will make your device mine 5 minutes out of 100 to fund uPlexa project.\n\nThe default value is 0.</string>
+    <string name="donate_help">If you would like to help build this project, feel free to specify a donation level here.\n\nFor example, a value of 5 will make your device mine 5 minutes out of 100 to fund Fuego project.\n\nThe default value is 0.</string>
     <string name="mininggoal_help">The mining goal should reflect the pool payout setting, but you can also specify a custom value for your device.\n\nThe default value is the minimum payout value of the specified mining pool.</string>
     <string name="temp_control_warning">This application implements two layers of protection for your device.\n\nThe first one is the As-Much-As-You-Can (AMAYC) machine learning algorithm that can predict when your device will overheat and pause the miner until the device\'s temperature has normalized.\n\nThe second one is a static temperature monitoring that will automatically pause the miner if your device reaches one of the maximum temperatures defined in the settings.</string>
     <string name="temp_control_ownrisks">Turning this feature off might cause damage to your device. Do it at your own risk!</string>
     <string name="shares_help">Your mining reward is based on the amount of shares that contributed to the resolution of a block.</string>
-    <string name="donation_addresses_help">If you would like to help build this project, you can send BTC, ETH or UPX to the project\'s wallet.\n\nDonations support the contributors and help the team pay for the project expenses. Thanks for your support!</string>
+    <string name="donation_addresses_help">If you would like to help build this project, you can send XMR, ETH or XFG to the project\'s wallet.\n\nDonations support the contributors and help the team pay for the project expenses. Thanks for your support!</string>
     <string name="pool_options_help">These parameters are optional, you can leave them blank if you don\'t know what they represent.\n\nTo add a static difficulty or a paymentID, specify it in the \'Username parameters\' field. For example, enter \'+500\' to configure a static difficulty of 500.\n\nMake sure you respect the selected pool configuration. The value of this field will be appended as is to the wallet address.</string>
     <string name="hardware_settings_help">Your device will start cooling when the CPU or battery reach the specified temperatures.\n\nThe cooldown threshold defines the temperature at which the application will resume the mining process.</string>
 
@@ -151,9 +151,10 @@
     <string name="disclaimerText">Running your CPU at a high intensity for a prolonged duration may result in negative effects such as: battery drainage, slow response time, overheating, and may cause permanent damage to your device.\n\nWe recommend using the Temperature Settings and a low amount of CPU Cores to prevent your device from being damaged.\n\nBy using this application, you assume full responsibility for any damage that may be caused to your device, property or self.</string>
     <string name="icons_by">Icons by</string>
     <string name="and">and</string>
-    <string name="btc">BTC</string>
+    <string name="btc">XMR</string>
     <string name="eth">ETH</string>
-    <string name="upx">UPX</string>
+    <string name="upx">XFG</string>
+    <string name="xfg">XFG</string>
     <string name="cpu_cores">CPU Cores</string>
     <string name="hashes_second">Hashes/second</string>
     <string name="log">Mining Log</string>
@@ -173,7 +174,7 @@
     <string name="made_with">Made with</string>
     <string name="by">by</string>
     <string name="forked_from">Forked from</string>
-    <string name="uplexa_project">uPlexa IoT-Proxy</string>
+    <string name="uplexa_project">Fuego Network</string>
     <string name="recommended">(Recommended)</string>
     <string name="stop">Stop</string>
     <string name="start">Start</string>
