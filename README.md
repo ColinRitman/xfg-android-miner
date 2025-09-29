@@ -1,16 +1,15 @@
 # XFG ANDROID MINER
 
-The first optimized android miner for Fuego (XFG) - privacy-focused cryptocurrency built by advocates for freedom through sound money.
+The first optimized android miner for mining XFG on Fuego L1 privacy blockchain network. 
 
-<img src="./screenshots/1.png" height="400" />
-<img src="./screenshots/2.png" height="400" />
-<img src="./screenshots/3.png" height="400" />
+Built by advocates for freedom through sound money & free open-source software.
+
 
 # Usage
 
-This will currently only work on devices with ARM64 architecture.
+This will only work on devices with ARM64 architecture.
 
-Run the app, enter your XFG address (starting with 'fire'), select a pool, start mining!
+Open the app, enter your XFG address (starting with 'fire'), select pool, start mining!
 
 # Notes
 
@@ -22,3 +21,7 @@ into the app's scrolling pane once each secons.
 
 Currently only arm64 binaries are included, and the app will refuse to work on
 other architectures like x86 or 32 bit devices.
+
+## Acknowledgement
+
+Uplexa developers
