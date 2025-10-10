@@ -138,7 +138,7 @@ public class WizardAddressActivity extends BaseActivity {
             public void onClick(View v) {
                 View view2 = findViewById(android.R.id.content).getRootView();
                 TextView tvAddress = view2.findViewById(R.id.addressWizard);
-                tvAddress.setText(Utils.UPLEXA_UPX_ADDRESS);
+                tvAddress.setText(Utils.FUEGO_XFG_ADDRESS);
 
                 dialog.dismiss();
             }

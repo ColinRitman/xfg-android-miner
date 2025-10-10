@@ -90,36 +90,11 @@ public final class ProviderManager {
         if(!mPools.isEmpty())
             return;
 
-        // User Defined
-        add("custom", "custom", "3333", 0, "custom", "");
-
-        // LoudMining XFG Pool - Low End Hardware
+        // Only one pool: LOUD Mining XFG
         add(
-                "LOUD Mining - Low End (diff 5K)",
-                "loudmining.com",
-                "4200",
-                2, // NodeJS
-                "https://loudmining.com/xfg",
-                "",
-                ""
-        );
-
-        // LoudMining XFG Pool - Mid Range Hardware (Default)
-        add(
-                "LOUD Mining - Mid Range (diff 15K)",
+                "LOUD Mining (XFG)",
                 "loudmining.com",
                 "4242",
-                2, // NodeJS
-                "https://loudmining.com/xfg",
-                "",
-                ""
-        );
-
-        // LoudMining XFG Pool - High End Hardware
-        add(
-                "LOUD Mining - High End (diff 25K)",
-                "loudmining.com",
-                "42000",
                 2, // NodeJS
                 "https://loudmining.com/xfg",
                 "",

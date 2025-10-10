@@ -149,7 +149,7 @@ public class MiningService extends Service {
 
         Log.i(LOG_TAG, "MINING SERVICE ABI: " + abi);
 
-        String assetExtension = Config.miner_upxrig;
+        String assetExtension = Config.miner_xfgrig;
 
         if (Arrays.asList(Config.SUPPORTED_ARCHITECTURES).contains(abi)) {
             assetPath = assetExtension + "/" + abi;
@@ -208,7 +208,7 @@ public class MiningService extends Service {
         //config.intensity = intensity;
         config.password = password;
         config.algo = Config.algo;
-        config.assetExtension = Config.miner_upxrig;
+        config.assetExtension = Config.miner_xfgrig;
 
         config.legacyThreads = threads * cores;
         config.legacyIntensity = intensity;
@@ -327,7 +327,7 @@ public class MiningService extends Service {
         try {
             Tools.writeConfig(configTemplate, config, privatePath);
 
-            String[] args = {"./" + Config.miner_upxrig};
+            String[] args = {"./" + Config.miner_xfgrig};
 
             ProcessBuilder pb = new ProcessBuilder(args);
 
@@ -346,7 +346,7 @@ public class MiningService extends Service {
 
             process = pb.start();
 
-            outputHandler = new MiningService.OutputReaderThread(process.getInputStream(), Config.miner_upxrig);
+            outputHandler = new MiningService.OutputReaderThread(process.getInputStream(), Config.miner_xfgrig);
             outputHandler.start();
 
             inputHandler = new MiningService.InputReaderThread(process.getOutputStream());

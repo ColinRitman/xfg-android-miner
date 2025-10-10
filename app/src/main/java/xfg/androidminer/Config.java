@@ -24,7 +24,7 @@ public class Config {
     private static Config mSettings;
     private SharedPreferences preferences;
 
-    static final int DefaultPoolIndex = 1;
+    static final int DefaultPoolIndex = 0;
     public static final Long statsDelay = 30000L;
     static final String miner_xfgrig = "xmrig";
     static final String algo = "cryptonight-upxtwo";

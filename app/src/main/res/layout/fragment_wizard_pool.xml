@@ -37,17 +37,12 @@
 			android:paddingBottom="15dp"
 			android:onClick="onClickuPlexa">
 
-			<TextView
-				android:layout_width="40dp"
-				android:layout_height="40dp"
-				android:layout_gravity="center_vertical"
-				android:background="@drawable/circle_grey"
-				android:gravity="center"
-				android:text="UPX"
-				android:textColor="@color/txt_secondary"
-				android:textStyle="bold"
-				android:textSize="18sp"
-				tools:ignore="HardcodedText" />
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@string/xfg"
+                android:src="@drawable/fuegold" />
 
 			<LinearLayout
 				android:layout_width="wrap_content"
@@ -57,14 +52,15 @@
 				android:background="@drawable/corner_radius_lighter"
 				android:layout_marginStart="15dp">
 
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_vertical"
-					android:text="@string/uplexa_project"
-					android:textColor="@color/txt_secondary"
-					android:textStyle="bold"
-					android:textSize="14sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Fuego Network"
+                    android:textColor="@color/txt_secondary"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    tools:ignore="HardcodedText" />
 
 				<TextView
 					android:id="@+id/minersuPlexa"
@@ -109,8 +105,8 @@
 
 		</LinearLayout>
 
-		<LinearLayout
-			android:id="@+id/llMR"
+        <LinearLayout
+            android:id="@+id/llMR"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:orientation="horizontal"
@@ -119,8 +115,9 @@
 			android:paddingTop="15dp"
 			android:paddingLeft="15dp"
 			android:paddingRight="15dp"
-			android:paddingBottom="15dp"
-			android:onClick="onClickMR">
+            android:paddingBottom="15dp"
+            android:onClick="onClickMR"
+            android:visibility="gone">
 
 			<TextView
 				android:layout_width="40dp"
@@ -142,15 +139,15 @@
 				android:background="@drawable/corner_radius_lighter"
 				android:layout_marginStart="15dp">
 
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_vertical"
-					android:text="uPlexa Online"
-					android:textColor="@color/txt_secondary"
-					android:textStyle="bold"
-					android:textSize="14sp"
-					tools:ignore="HardcodedText" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="LOUD Mining"
+                    android:textColor="@color/txt_secondary"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    tools:ignore="HardcodedText" />
 
 				<TextView
 					android:id="@+id/minersMR"
@@ -195,8 +192,8 @@
 
 		</LinearLayout>
 
-		<LinearLayout
-			android:id="@+id/llHM"
+        <LinearLayout
+            android:id="@+id/llHM"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:orientation="horizontal"
@@ -205,8 +202,9 @@
 			android:paddingTop="15dp"
 			android:paddingLeft="15dp"
 			android:paddingRight="15dp"
-			android:paddingBottom="15dp"
-			android:onClick="onClickHM">
+            android:paddingBottom="15dp"
+            android:onClick="onClickHM"
+            android:visibility="gone">
 
 			<TextView
 				android:layout_width="40dp"
@@ -228,15 +226,15 @@
 				android:background="@drawable/corner_radius_lighter"
 				android:layout_marginStart="15dp">
 
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_vertical"
-					android:text="MiningOcean"
-					android:textColor="@color/txt_secondary"
-					android:textStyle="bold"
-					android:textSize="14sp"
-					tools:ignore="HardcodedText" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="LOUD Mining"
+                    android:textColor="@color/txt_secondary"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    tools:ignore="HardcodedText" />
 
 				<TextView
 					android:id="@+id/minersHM"
@@ -281,8 +279,8 @@
 
 		</LinearLayout>
 
-		<LinearLayout
-			android:id="@+id/llGNTL"
+        <LinearLayout
+            android:id="@+id/llGNTL"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:orientation="horizontal"
@@ -291,8 +289,9 @@
 			android:paddingTop="15dp"
 			android:paddingLeft="15dp"
 			android:paddingRight="15dp"
-			android:paddingBottom="15dp"
-			android:onClick="onClickGNTL">
+            android:paddingBottom="15dp"
+            android:onClick="onClickGNTL"
+            android:visibility="gone">
 
 			<TextView
 				android:layout_width="40dp"
@@ -314,15 +313,15 @@
 				android:background="@drawable/corner_radius_lighter"
 				android:layout_marginStart="15dp">
 
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_vertical"
-					android:text="Miner.Rocks"
-					android:textColor="@color/txt_secondary"
-					android:textStyle="bold"
-					android:textSize="14sp"
-					tools:ignore="HardcodedText" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="LOUD Mining"
+                    android:textColor="@color/txt_secondary"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    tools:ignore="HardcodedText" />
 
 				<TextView
 					android:id="@+id/minersGNTL"

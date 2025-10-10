@@ -50,8 +50,8 @@ final class Utils {
     static String FUEGO_ETH_ADDRESS = "0xf8108826279b68504BDF5B3f056382E7Bf821CD0";
     static String FUEGO_XFG_ADDRESS = "fireVHx639SLMhzmBoJ8drTXbVyv2eRG6A8aMLc1taTiRNwk8pnwXpBDUSjH1dT5fg7yVVZrKkvm31CmigAMdVDg7sgxJmAUNp";
 
-    static String ADDRESS_REGEX_MAIN = "^fire+([1-9A-HJ-NP-Za-km-z]{104})$";
-    static String ADDRESS_REGEX_SUB = "^fir+([1-9A-HJ-NP-Za-km-z]{104})$";
+    static String ADDRESS_REGEX_MAIN = "^fire([1-9A-HJ-NP-Za-km-z]{104})$";
+    static String ADDRESS_REGEX_SUB = "^fire([1-9A-HJ-NP-Za-km-z]{104})$";
 
     static boolean verifyAddress(String input) {
         Pattern p = Pattern.compile(Utils.ADDRESS_REGEX_MAIN);

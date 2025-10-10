@@ -132,11 +132,11 @@ public class StatsFragment extends Fragment {
             TextView tvAddressBlocks = view.findViewById(R.id.blocksminedminer);
             tvAddressBlocks.setText(d.miner.blocks.isEmpty() ? "n/a" : d.miner.blocks);
 
-            String sBalance = d.miner.balance.replace("UPX", "").trim();
+            String sBalance = d.miner.balance.replace("UPX", "").replace("XFG", "").trim();
             TextView tvBalance = view.findViewById(R.id.balance);
             tvBalance.setText(sBalance);
 
-            String sPaid = d.miner.paid.replace("UPX", "").trim();
+            String sPaid = d.miner.paid.replace("UPX", "").replace("XFG", "").trim();
             TextView tvPaid = view.findViewById(R.id.paid);
             tvPaid.setText(sPaid);
         }
