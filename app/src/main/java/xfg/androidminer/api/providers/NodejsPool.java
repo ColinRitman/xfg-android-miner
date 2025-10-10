@@ -27,10 +27,10 @@ import xfg.androidminer.api.ProviderAbstract;
 import xfg.androidminer.api.PoolItem;
 import xfg.androidminer.network.Json;
 
-import static io.uplexaproject.androidminer.Tools.getReadableHashRateString;
-import static io.uplexaproject.androidminer.Tools.parseCurrency;
-import static io.uplexaproject.androidminer.Tools.parseCurrencyFloat;
-import static io.uplexaproject.androidminer.Tools.tryParseLong;
+import static xfg.androidminer.Tools.getReadableHashRateString;
+import static xfg.androidminer.Tools.parseCurrency;
+import static xfg.androidminer.Tools.parseCurrencyFloat;
+import static xfg.androidminer.Tools.tryParseLong;
 
 public final class NodejsPool extends ProviderAbstract {
 
@@ -77,7 +77,7 @@ public final class NodejsPool extends ProviderAbstract {
             mBlockData.network.lastBlockHeight = joNetworkStats.optString("height");
             mBlockData.network.difficulty = joNetworkStats.optString("difficulty");
             mBlockData.network.lastBlockTime = pTime.format(new Date(joNetworkStats.optLong("ts") * 1000));
-            mBlockData.network.lastRewardAmount =  parseCurrency(joNetworkStats.optString("value", "0"), denominationUnit, denominationUnit, "UPX");
+            mBlockData.network.lastRewardAmount =  parseCurrency(joNetworkStats.optString("value", "0"), denominationUnit, denominationUnit, mBlockData.coin.symbol);
         } catch (JSONException e) {
             Log.i(LOG_TAG, "NETWORK\n" + e.toString());
             e.printStackTrace();

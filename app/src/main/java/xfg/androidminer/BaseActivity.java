@@ -15,7 +15,7 @@ package xfg.androidminer;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Toast;
 
-import static io.uplexaproject.androidminer.MainActivity.contextOfApplication;
+import static xfg.androidminer.MainActivity.contextOfApplication;
 
 public abstract class BaseActivity extends AppCompatActivity {
     private static int sessionDepth = 0;

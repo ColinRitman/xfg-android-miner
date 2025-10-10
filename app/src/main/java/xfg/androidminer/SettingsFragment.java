@@ -515,7 +515,7 @@ public class SettingsFragment extends Fragment {
                 btnYes.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        edAddress.setText(Utils.UPLEXA_UPX_ADDRESS);
+                        edAddress.setText(Utils.FUEGO_XFG_ADDRESS);
 
                         dialog.dismiss();
                     }

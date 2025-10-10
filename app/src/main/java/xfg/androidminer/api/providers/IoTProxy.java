@@ -28,9 +28,9 @@ import xfg.androidminer.network.Json;
 import xfg.androidminer.api.ProviderAbstract;
 import xfg.androidminer.api.PoolItem;
 
-import static io.uplexaproject.androidminer.Tools.getReadableHashRateString;
-import static io.uplexaproject.androidminer.Tools.parseCurrency;
-import static io.uplexaproject.androidminer.Tools.tryParseLong;
+import static xfg.androidminer.Tools.getReadableHashRateString;
+import static xfg.androidminer.Tools.parseCurrency;
+import static xfg.androidminer.Tools.tryParseLong;
 
 public class IoTProxy extends ProviderAbstract {
 

@@ -47,8 +47,8 @@ public final class ProviderData {
     }
 
     public static class Coin {
-        public String name = "uPlexa";
-        public String symbol = "UPX";
+        public String name = "Fuego";
+        public String symbol = "XFG";
         public long units;
         public long denominationUnit = 100L;
     }
