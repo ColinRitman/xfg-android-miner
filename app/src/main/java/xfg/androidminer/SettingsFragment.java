@@ -293,12 +293,6 @@ public class SettingsFragment extends Fragment {
                     edWorkerName.setText(Config.read("workername"));
                 }
 
-                if (position == 0){
-                    edPool.setText(Config.read("custom_pool"));
-                    edPort.setText(Config.read("custom_port"));
-                    return;
-                }
-
                 PoolItem poolItem = ProviderManager.getPoolById(position);
 
                 if(poolItem != null){
@@ -313,38 +307,11 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-        PoolItem poolItem = null;
-        String poolSelected = Config.read("selected_pool");
-        int sp = Config.DefaultPoolIndex;
-        if (poolSelected.isEmpty()) {
-            poolSelected = Integer.toString(sp);
-        }
-        poolItem = ProviderManager.getPoolById(poolSelected);
+        PoolItem poolItem = ProviderManager.getPoolById(0);
+        edPool.setText(poolItem.getKey());
+        edPort.setText(poolItem.getPort());
 
-        if(poolItem == null) {
-            poolSelected = Integer.toString(sp);
-        }
-
-        poolItem = ProviderManager.getPoolById(poolSelected);
-        if (!Config.read("init").equals("1")) {
-            poolSelected = Integer.toString(sp);
-        }
-
-        if(poolSelected.equals("0")) {
-            edPool.setText(Config.read("custom_pool"));
-            edPort.setText(Config.read("custom_port"));
-        } else if(!Config.read("custom_port").isEmpty()) {
-            assert poolItem != null;
-            edPool.setText(poolItem.getKey());
-            edPort.setText(Config.read("custom_port"));
-        }else{
-            Config.write("custom_pool","");
-            Config.write("custom_port","");
-            edPool.setText(poolItem.getKey());
-            edPort.setText(poolItem.getPort());
-        }
-
-        spPool.setSelection(Integer.parseInt(poolSelected));
+        spPool.setSelection(0);
 
         bSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -376,32 +343,17 @@ public class SettingsFragment extends Fragment {
                 edWorkerName.setText(workername);
 
                 String key = spPool.getSelectedItem().toString();
-                int selectedPosition = Config.DefaultPoolIndex;
+                int selectedPosition = 0;
 
                 PoolItem[] pools = ProviderManager.getPools();
-                for(int i = 0; i < pools.length; i++) {
-                    PoolItem pi = pools[i];
-                    if(pi.getKey().equals(key)) {
-                        selectedPosition = i;
-                        break;
-                    }
-                }
-
                 PoolItem pi = ProviderManager.getPoolById(selectedPosition);
                 String port = edPort.getText().toString().trim();
                 String pool = edPool.getText().toString().trim();
 
                 Log.i(LOG_TAG,"PoolType : " + pi.getPoolType());
-                if(pi.getPoolType() == 0) {
-                    Config.write("custom_pool", pool);
-                    Config.write("custom_port", port);
-                } else if(!port.isEmpty() && !pi.getPort().equals(port)) {
-                    Config.write("custom_pool", "");
-                    Config.write("custom_port", port);
-                } else {
-                    Config.write("custom_port", "");
-                    Config.write("custom_pool", "");
-                }
+                // Only one fixed pool; ignore custom overrides
+                Config.write("custom_port", "");
+                Config.write("custom_pool", "");
 
                 Log.i(LOG_TAG,"SelectedPool : " + selectedPosition);
                 Config.write("selected_pool", Integer.toString(selectedPosition));

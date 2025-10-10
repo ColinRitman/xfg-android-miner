@@ -188,7 +188,7 @@ public class AboutFragment extends Fragment {
         btnDebugInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Utils.copyToClipboard("uPlexa Android Miner Debug Info", sDebugInfo);
+                Utils.copyToClipboard("Fuego Android Miner Debug Info", sDebugInfo);
                 Toast.makeText(getContext(), getResources().getString(R.string.debuginfo_copied), Toast.LENGTH_SHORT).show();
             }
         });
