@@ -1902,7 +1902,7 @@ public class MainActivity extends BaseActivity
         notificationBuilder.setContentIntent(pendingIntentOpen);
         notificationBuilder.addAction(android.R.drawable.ic_menu_view,"Open", pendingIntentOpen);
         notificationBuilder.addAction(android.R.drawable.ic_lock_power_off,"Stop", pendingIntentStop);
-        notificationBuilder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round));
+        notificationBuilder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.fuegold));
         notificationBuilder.setSmallIcon(R.drawable.ic_notification);
         notificationBuilder.setOngoing(true);
         notificationBuilder.setOnlyAlertOnce(true);
