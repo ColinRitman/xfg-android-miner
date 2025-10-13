@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">XFG Android Miner</string>
+    <string name="app_name">Fuego Android Miner</string>
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
     <string name="mining_pool_address">Mining pool URL</string>
