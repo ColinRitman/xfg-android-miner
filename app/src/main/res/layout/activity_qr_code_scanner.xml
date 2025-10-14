@@ -16,7 +16,7 @@
 
         <fragment
             android:id="@+id/barcode"
-            android:name="com.google.android.gms.samples.vision.barcodereader.BarcodeCapture"
+            android:name="xyz.belvi.mobilevisionbarcodescanner.BarcodeFragment"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_alignParentStart="true"
@@ -28,17 +28,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            app:gvb_auto_focus="true"
-            app:gvb_code_format="code_39|aztec|qr_code"
-            app:gvb_flash="false"
-            app:gvb_multiple="false"
-            app:gvb_rect="true"
-            app:gvb_req_height="480"
-            app:gvb_req_width="640"
-            app:gvb_show_text="false"
-            app:gvb_touch="true"
-            app:gvb_use_front="false" />
+            android:layout_marginBottom="10dp" />
 
     </RelativeLayout>
 
