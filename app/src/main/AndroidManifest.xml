@@ -36,7 +36,8 @@
         </activity>
 
         <activity
-            android:name="xfg.androidminer.SplashActivity">
+            android:name="xfg.androidminer.SplashActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -79,7 +80,8 @@
 
         <receiver
             android:name="xfg.androidminer.NotificationsReceiver"
-            android:enabled="true">
+            android:enabled="true"
+            android:exported="true">
             <intent-filter>
                 <action android:name="OPEN_ACTION"/>
                 <action android:name="STOP_ACTION"/>
