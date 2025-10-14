@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.samples.vision.barcodereader.BarcodeCapture;
+import xyz.belvi.mobilevisionbarcodescanner.BarcodeFragment;
 import com.google.android.gms.samples.vision.barcodereader.BarcodeGraphic;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.barcode.Barcode;
@@ -33,12 +33,12 @@ import xyz.belvi.mobilevisionbarcodescanner.BarcodeRetriever;
 public class QrCodeScannerActivity extends AppCompatActivity implements BarcodeRetriever {
 
     public TextView scanResult;
-    BarcodeCapture barcodeCapture;
+    BarcodeFragment barcodeCapture;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_code_scanner);
-        barcodeCapture = (BarcodeCapture) getSupportFragmentManager().findFragmentById(R.id.barcode);
+        barcodeCapture = (BarcodeFragment) getSupportFragmentManager().findFragmentById(R.id.barcode);
         barcodeCapture.setRetrieval(this);
 
         findViewById(R.id.stop).setOnClickListener(new View.OnClickListener() {
@@ -59,7 +59,6 @@ public class QrCodeScannerActivity extends AppCompatActivity implements BarcodeR
                 .setBarcodeFormat(Barcode.ALL_FORMATS)
                 .setCameraFacing(CameraSource.CAMERA_FACING_BACK)
                 .setShouldShowText(false);
-        barcodeCapture.refresh();
     }
 
     @Override

@@ -17,9 +17,21 @@
 package xfg.androidminer.controls;
 
 import android.content.Context
+import android.graphics.Canvas
+import com.github.anastr.speedviewlib.components.indicators.Indicator
 
 // Temporary stub class to replace speedviewlib dependency
-class SimpleTriangleIndicator(context: Context) {
-    // This is a placeholder class to allow compilation without speedviewlib
-    // The actual functionality would be implemented when speedviewlib is available
+class SimpleTriangleIndicator(context: Context) : Indicator<SimpleTriangleIndicator>(context) {
+    
+    override fun draw(canvas: Canvas) {
+        // Stub implementation - would draw triangle indicator
+    }
+    
+    override fun updateIndicator() {
+        // Stub implementation - would update indicator position
+    }
+    
+    override fun setWithEffects(withEffects: Boolean) {
+        // Stub implementation - would set visual effects
+    }
 }
