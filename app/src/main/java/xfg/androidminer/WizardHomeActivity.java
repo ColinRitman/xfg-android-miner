@@ -65,7 +65,7 @@ public class WizardHomeActivity extends BaseActivity {
         TextView tvDisclaimer = view.findViewById(R.id.disclaimer);
         tvDisclaimer.setText(ss);
         tvDisclaimer.setMovementMethod(LinkMovementMethod.getInstance());
-        tvDisclaimer.setLinkTextColor(getResources().getColor(R.color.c_blue));
+        tvDisclaimer.setLinkTextColor(getResources().getColor(R.color.c_orange));
         tvDisclaimer.setHighlightColor(Color.TRANSPARENT);
     }
 

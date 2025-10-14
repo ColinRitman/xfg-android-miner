@@ -4,10 +4,10 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/bg_lighter</item>
         <item name="colorPrimaryDark">@color/c_inactive</item>
-        <item name="colorAccent">@color/bg_lighter</item>
+        <item name="colorAccent">@color/c_orange</item>
         <item name="colorControlNormal">@color/c_grey</item>
-        <item name="colorControlActivated">@color/c_blue</item>
-        <item name="colorControlHighlight">@color/c_blue</item>
+        <item name="colorControlActivated">@color/c_orange</item>
+        <item name="colorControlHighlight">@color/c_orange</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -29,7 +29,7 @@
 
     <style name="SwitchTheme" parent="Theme.AppCompat.Light">
         <!-- active thumb & track color (30% transparency) -->
-        <item name="colorControlActivated">@color/c_blue</item>
+        <item name="colorControlActivated">@color/c_orange</item>
         <!-- inactive thumb color -->
         <item name="colorSwitchThumbNormal">@color/c_grey</item>
         <!-- inactive track color (30% transparency) -->
