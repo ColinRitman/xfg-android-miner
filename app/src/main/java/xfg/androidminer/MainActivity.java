@@ -106,6 +106,7 @@ import com.android.volley.toolbox.Volley;
 import com.github.anastr.speedviewlib.SpeedView;
 import com.github.anastr.speedviewlib.TubeSpeedometer;
 import com.github.anastr.speedviewlib.components.Section;
+import com.github.anastr.speedviewlib.components.Style;
 import com.github.anastr.speedviewlib.components.indicators.LineIndicator;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -304,7 +305,7 @@ public class MainActivity extends BaseActivity
         meterCoresGap.invalidate();
 
         meterCores = findViewById(R.id.meter_cores);
-        meterCores.makeSections(1, getResources().getColor(R.color.c_yellow), Section.Style.SQUARE);
+        meterCores.makeSections(1, getResources().getColor(R.color.c_yellow), Style.ROUND);
         meterCores.setMaxSpeed(nNbMaxCores);
         meterCores.speedTo(nCores, 0);
 
@@ -312,7 +313,7 @@ public class MainActivity extends BaseActivity
 
         // Hashrate
         meterHashrate = findViewById(R.id.meter_hashrate);
-        meterHashrate.makeSections(1, getResources().getColor(R.color.c_orange), Section.Style.SQUARE);
+        meterHashrate.makeSections(1, getResources().getColor(R.color.c_orange), Style.ROUND);
 
         LineIndicator indicator_speed = new LineIndicator(contextOfApplication, 0.15f);
         indicator_speed.setColor(getResources().getColor(R.color.c_white));
@@ -321,7 +322,7 @@ public class MainActivity extends BaseActivity
 
         // Average Meter
         meterHashrate_avg = findViewById(R.id.meter_hashrate_avg);
-        meterHashrate_avg.makeSections(1, getResources().getColor(android.R.color.transparent), Section.Style.SQUARE);
+        meterHashrate_avg.makeSections(1, getResources().getColor(android.R.color.transparent), Style.ROUND);
 
         SimpleTriangleIndicator indicator_avg = new SimpleTriangleIndicator(contextOfApplication);
         indicator_avg.setWidth(40.0f);
@@ -330,7 +331,7 @@ public class MainActivity extends BaseActivity
 
         // Max Meter
         meterHashrate_max = findViewById(R.id.meter_hashrate_max);
-        meterHashrate_max.makeSections(1, getResources().getColor(android.R.color.transparent), Section.Style.SQUARE);
+        meterHashrate_max.makeSections(1, getResources().getColor(android.R.color.transparent), Style.ROUND);
 
         SimpleTriangleIndicator indicator_max = new SimpleTriangleIndicator(contextOfApplication);
         indicator_max.setWidth(40.0f);
@@ -1647,7 +1648,7 @@ public class MainActivity extends BaseActivity
 
         // Check if temperatures are now safe to resume mining
         if(isDeviceCooling()) {
-            if (cpuTemp.equals("n/a")) {
+            if (cpuTemp <= 0) {
               cpuTemp = 0;
             }
             if (cpuTemp <= nSafeCPUTemp && batteryTemp <= nSafeBatteryTemp) {

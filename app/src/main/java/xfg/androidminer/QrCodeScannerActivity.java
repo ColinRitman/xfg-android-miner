@@ -59,7 +59,6 @@ public class QrCodeScannerActivity extends AppCompatActivity implements BarcodeR
                 .setBarcodeFormat(Barcode.ALL_FORMATS)
                 .setCameraFacing(CameraSource.CAMERA_FACING_BACK)
                 .setShouldShowText(false);
-        barcodeCapture.refresh();
     }
 
     @Override
