@@ -11,8 +11,8 @@
     <application
         android:allowBackup="true"
         android:usesCleartextTraffic="true"
-        android:icon="@mipmap/fuegold"
-        android:roundIcon="@mipmap/fuegold"
+        android:icon="@drawable/fuegold"
+        android:roundIcon="@drawable/fuegold"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
 
