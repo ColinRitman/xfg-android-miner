@@ -183,53 +183,89 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center" >
 
-                <TextView
+                <com.github.anastr.speedviewlib.SpeedView
                     android:id="@+id/meter_hashrate_ticks"
                     android:layout_width="296dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:text="SpeedView Placeholder"
-                    android:gravity="center" />
+                    app:sv_minSpeed="0"
+                    app:sv_maxSpeed="15000"
+                    app:sv_speedometerColor="@color/bg_darker"
+                    app:sv_markColor="@android:color/transparent"
+                    app:sv_textColor="@color/txt_main"
+                    app:sv_withTremble="false"
+                    app:sv_speedometerWidth="70dp"
+                    app:sv_textSize="0sp"/>
 
-                <TextView
+                <com.github.anastr.speedviewlib.TubeSpeedometer
                     android:id="@+id/meter_cores"
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:text="TubeSpeedometer Placeholder"
-                    android:gravity="center" />
+                    app:sv_minSpeed="0"
+                    app:sv_maxSpeed="4"
+                    app:sv_speedometerColor="@color/bg_darker"
+                    app:sv_markColor="@android:color/transparent"
+                    app:sv_textColor="@color/txt_main"
+                    app:sv_withTremble="false"
+                    app:sv_speedometerWidth="40dp"
+                    app:sv_textSize="0sp"/>
 
-                <TextView
+                <com.github.anastr.speedviewlib.TubeSpeedometer
                     android:id="@+id/meter_cores_gap"
                     android:layout_width="215dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:text="TubeSpeedometer Placeholder"
-                    android:gravity="center" />
+                    app:sv_minSpeed="0"
+                    app:sv_maxSpeed="4"
+                    app:sv_speedometerColor="@color/bg_darker"
+                    app:sv_markColor="@color/c_yellow"
+                    app:sv_textColor="@color/txt_main"
+                    app:sv_withTremble="false"
+                    app:sv_speedometerWidth="55dp"
+                    app:sv_textSize="11sp"/>
 
-                <TextView
+                <com.github.anastr.speedviewlib.TubeSpeedometer
                     android:id="@+id/meter_hashrate_avg"
                     android:layout_width="250dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:text="TubeSpeedometer Placeholder"
-                    android:gravity="center" />
+                    app:sv_minSpeed="0"
+                    app:sv_maxSpeed="100"
+                    app:sv_speedometerColor="@color/bg_darker"
+                    app:sv_markColor="@android:color/transparent"
+                    app:sv_textColor="@color/txt_main"
+                    app:sv_withTremble="false"
+                    app:sv_speedometerWidth="90dp"
+                    app:sv_textSize="0sp"/>
 
-                <TextView
+                <com.github.anastr.speedviewlib.TubeSpeedometer
                     android:id="@+id/meter_hashrate_max"
                     android:layout_width="250dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:text="TubeSpeedometer Placeholder"
-                    android:gravity="center" />
+                    app:sv_minSpeed="0"
+                    app:sv_maxSpeed="100"
+                    app:sv_speedometerColor="@color/bg_darker"
+                    app:sv_markColor="@android:color/transparent"
+                    app:sv_textColor="@color/txt_main"
+                    app:sv_withTremble="false"
+                    app:sv_speedometerWidth="90dp"
+                    app:sv_textSize="0sp"/>
 
-                <TextView
+                <com.github.anastr.speedviewlib.TubeSpeedometer
                     android:id="@+id/meter_hashrate"
                     android:layout_width="305dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:text="TubeSpeedometer Placeholder"
-                    android:gravity="center"/>
+                    app:sv_minSpeed="0"
+                    app:sv_maxSpeed="100"
+                    app:sv_speedometerColor="@color/bg_darker"
+                    app:sv_markColor="@android:color/transparent"
+                    app:sv_textColor="@color/txt_main"
+                    app:sv_withTremble="false"
+                    app:sv_speedometerWidth="100dp"
+                    app:sv_textSize="0sp"/>
 
                 <LinearLayout
                     android:id="@+id/layout_hashrate"

@@ -1,6 +1,5 @@
 *.iml
 .gradle
-gradle/
 /local.properties
 .idea/
 .DS_Store
@@ -8,3 +7,7 @@ gradle/
 /build
 /captures
 .externalNativeBuild
+
+# Gradle wrapper - DO NOT IGNORE
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
