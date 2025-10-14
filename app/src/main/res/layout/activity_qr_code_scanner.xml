@@ -14,9 +14,8 @@
         android:clickable="false"
         android:gravity="center">
 
-        <fragment
+        <TextView
             android:id="@+id/barcode"
-            android:name="com.google.android.gms.samples.vision.barcodereader.BarcodeCapture"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_alignParentStart="true"
@@ -29,9 +28,8 @@
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
-            app:gvb_auto_focus="true"
-            app:gvb_code_format="code_39|aztec|qr_code"
-            app:gvb_flash="false" />
+            android:text="Barcode Scanner Placeholder"
+            android:gravity="center" />
 
     </RelativeLayout>
 
