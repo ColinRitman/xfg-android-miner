@@ -2,18 +2,23 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion '30.0.3'
+    namespace 'xfg.androidminer'
+    compileSdk 34
+    buildToolsVersion '34.0.0'
+
+    buildFeatures {
+        buildConfig true
+    }
 
     compileOptions {
-        sourceCompatibility '1.8'
-        targetCompatibility '1.8'
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     defaultConfig {
         applicationId "xfg.androidminer"
-        minSdkVersion 21
-        targetSdkVersion 28
+        minSdk 21
+        targetSdk 28
         versionCode 4
         versionName "4.1"
         buildConfigField "long", "BUILD_TIME", System.currentTimeMillis() + "L"
@@ -25,7 +30,7 @@ android {
         release {
             minifyEnabled false // Disable it for now, problem while fetching Json data for Pool API
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            // signingConfig signingConfigs.release // Commented out for CI/CD builds
         }
     }
 }
