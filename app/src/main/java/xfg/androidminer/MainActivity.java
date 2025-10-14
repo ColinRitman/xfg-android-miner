@@ -312,7 +312,7 @@ public class MainActivity extends BaseActivity
 
         // Hashrate
         meterHashrate = findViewById(R.id.meter_hashrate);
-        meterHashrate.makeSections(1, getResources().getColor(R.color.c_blue), Section.Style.SQUARE);
+        meterHashrate.makeSections(1, getResources().getColor(R.color.c_orange), Section.Style.SQUARE);
 
         LineIndicator indicator_speed = new LineIndicator(contextOfApplication, 0.15f);
         indicator_speed.setColor(getResources().getColor(R.color.c_white));
@@ -1356,7 +1356,7 @@ public class MainActivity extends BaseActivity
         if (speed) {
             int i = text.indexOf("]");
             int max = text.lastIndexOf("s");
-            textSpan.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.c_blue)), i+1, max+1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            textSpan.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.c_orange)), i+1, max+1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             textSpan.setSpan(new StyleSpan(android.graphics.Typeface.NORMAL), i, max+1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
             return textSpan;
         }

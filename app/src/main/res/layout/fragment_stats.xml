@@ -45,7 +45,7 @@
                 android:linksClickable="true"
                 android:autoLink="all"
                 android:onClick="onShowCores"
-                android:textColor="@color/c_blue"/>
+                android:textColor="@color/c_orange"/>
 
         </LinearLayout>
 

@@ -158,7 +158,7 @@ public class StatsFragment extends Fragment {
         tvViewStatsOnline.setEnabled(enable);
 
         if (enable) {
-            tvViewStatsOnline.setTextColor(getResources().getColor(R.color.c_blue));
+            tvViewStatsOnline.setTextColor(getResources().getColor(R.color.c_orange));
         }
         else {
             tvViewStatsOnline.setTextColor(getResources().getColor(R.color.c_grey));
