@@ -746,74 +746,64 @@ public class MainActivity extends BaseActivity
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_home: { //Main view
-                for (Fragment fragment : getSupportFragmentManager().getFragments()) {
-                    if (fragment != null) {
-                        getSupportFragmentManager().beginTransaction().remove(fragment).commit();
-                    }
+        int itemId = item.getItemId();
+        
+        if (itemId == R.id.menu_home) { //Main view
+            for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                if (fragment != null) {
+                    getSupportFragmentManager().beginTransaction().remove(fragment).commit();
                 }
-
-                llMain.setVisibility(View.VISIBLE);
-                llLog.setVisibility(View.GONE);
-
-                updateStatsListener();
-                updateUI();
-
-                break;
             }
-            case R.id.menu_log: {
-                for (Fragment fragment : getSupportFragmentManager().getFragments()) {
-                    if (fragment != null) {
-                        getSupportFragmentManager().beginTransaction().remove(fragment).commit();
-                    }
+
+            llMain.setVisibility(View.VISIBLE);
+            llLog.setVisibility(View.GONE);
+
+            updateStatsListener();
+            updateUI();
+        }
+        else if (itemId == R.id.menu_log) {
+            for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                if (fragment != null) {
+                    getSupportFragmentManager().beginTransaction().remove(fragment).commit();
                 }
-
-                llMain.setVisibility(View.GONE);
-                llLog.setVisibility(View.VISIBLE);
-
-                updateStatsListener();
-                updateUI();
-
-                break;
             }
-            case R.id.menu_stats: {
-                StatsFragment fragment_stats = (StatsFragment) getSupportFragmentManager().findFragmentByTag("fragment_stats");
-                if (fragment_stats == null) {
-                    fragment_stats = new StatsFragment();
-                }
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment_stats, "fragment_stats").commit();
+            llMain.setVisibility(View.GONE);
+            llLog.setVisibility(View.VISIBLE);
 
-                llMain.setVisibility(View.VISIBLE);
-                llLog.setVisibility(View.GONE);
-
-                break;
+            updateStatsListener();
+            updateUI();
+        }
+        else if (itemId == R.id.menu_stats) {
+            StatsFragment fragment_stats = (StatsFragment) getSupportFragmentManager().findFragmentByTag("fragment_stats");
+            if (fragment_stats == null) {
+                fragment_stats = new StatsFragment();
             }
-            case R.id.menu_settings: {
-                SettingsFragment settings_fragment = (SettingsFragment) getSupportFragmentManager().findFragmentByTag("settings_fragment");
-                if (settings_fragment == null) {
-                    settings_fragment = new SettingsFragment();
-                }
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, settings_fragment, "settings_fragment").commit();
 
-                llMain.setVisibility(View.VISIBLE);
-                llLog.setVisibility(View.GONE);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment_stats, "fragment_stats").commit();
 
-                break;
+            llMain.setVisibility(View.VISIBLE);
+            llLog.setVisibility(View.GONE);
+        }
+        else if (itemId == R.id.menu_settings) {
+            SettingsFragment settings_fragment = (SettingsFragment) getSupportFragmentManager().findFragmentByTag("settings_fragment");
+            if (settings_fragment == null) {
+                settings_fragment = new SettingsFragment();
             }
-            case R.id.menu_help: {
-                AboutFragment about_fragment = (AboutFragment) getSupportFragmentManager().findFragmentByTag("about_fragment");
-                if (about_fragment == null) {
-                    about_fragment = new AboutFragment();
-                }
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, about_fragment, "about_fragment").commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, settings_fragment, "settings_fragment").commit();
 
-                llMain.setVisibility(View.VISIBLE);
-                llLog.setVisibility(View.GONE);
-
-                break;
+            llMain.setVisibility(View.VISIBLE);
+            llLog.setVisibility(View.GONE);
+        }
+        else if (itemId == R.id.menu_help) {
+            AboutFragment about_fragment = (AboutFragment) getSupportFragmentManager().findFragmentByTag("about_fragment");
+            if (about_fragment == null) {
+                about_fragment = new AboutFragment();
             }
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, about_fragment, "about_fragment").commit();
+
+            llMain.setVisibility(View.VISIBLE);
+            llLog.setVisibility(View.GONE);
         }
 
         updateUI();
@@ -1562,53 +1552,59 @@ public class MainActivity extends BaseActivity
                     @Override
                     public void onStateChange(Boolean state) {
                         Log.i(LOG_TAG, "onMiningStateChange: " + state);
-                        runOnUiThread(() -> {
-                            updateMiningButtonState();
-                            if (state) {
-                                if (clearMinerLog) {
-                                    tvLog.setText("");
-                                    tvAcceptedShares.setText("0");
-                                    tvAcceptedShares.setTextColor(getResources().getColor(R.color.txt_inactive));
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                updateMiningButtonState();
+                                if (state) {
+                                    if (clearMinerLog) {
+                                        tvLog.setText("");
+                                        tvAcceptedShares.setText("0");
+                                        tvAcceptedShares.setTextColor(getResources().getColor(R.color.txt_inactive));
 
-                                    tvDifficulty.setText("0");
-                                    tvDifficulty.setTextColor(getResources().getColor(R.color.txt_inactive));
+                                        tvDifficulty.setText("0");
+                                        tvDifficulty.setTextColor(getResources().getColor(R.color.txt_inactive));
 
-                                    tvConnection.setText("0");
-                                    tvConnection.setTextColor(getResources().getColor(R.color.txt_inactive));
+                                        tvConnection.setText("0");
+                                        tvConnection.setTextColor(getResources().getColor(R.color.txt_inactive));
 
-                                    updateHashrate(-1.0f, -1.0f);
+                                        updateHashrate(-1.0f, -1.0f);
+                                    }
+                                    clearMinerLog = true;
+                                    setStatusText("Miner Started");
+                                } else {
+
+                                    setStatusText("Miner Stopped");
                                 }
-                                clearMinerLog = true;
-                                setStatusText("Miner Started");
-                            } else {
 
-                                setStatusText("Miner Stopped");
+                                bIsRestartEvent = false;
                             }
-
-                            bIsRestartEvent = false;
                         });
                     }
 
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onStatusChange(String status, float speed, float max, Integer accepted, Integer difficuly, Integer connection) {
-                        runOnUiThread(() -> {
-                            appendLogOutputText(status);
-                            tvAcceptedShares.setText(Integer.toString(accepted));
-                            tvDifficulty.setText(NumberFormat.getNumberInstance(Locale.getDefault()).format(difficuly));
-                            tvConnection.setText(Integer.toString(connection));
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                appendLogOutputText(status);
+                                tvAcceptedShares.setText(Integer.toString(accepted));
+                                tvDifficulty.setText(NumberFormat.getNumberInstance(Locale.getDefault()).format(difficuly));
+                                tvConnection.setText(Integer.toString(connection));
 
-                            if(!nLastShareCount.equals(accepted)) {
-                                nLastShareCount = accepted;
+                                if(!nLastShareCount.equals(accepted)) {
+                                    nLastShareCount = accepted;
+                                }
+
+                                if(accepted == 1) {
+                                    tvAcceptedShares.setTextColor(getResources().getColor(R.color.c_white));
+                                    tvDifficulty.setTextColor(getResources().getColor(R.color.c_white));
+                                    tvConnection.setTextColor(getResources().getColor(R.color.c_white));
+                                }
+
+                                updateHashrate(speed, max);
                             }
-
-                            if(accepted == 1) {
-                                tvAcceptedShares.setTextColor(getResources().getColor(R.color.c_white));
-                                tvDifficulty.setTextColor(getResources().getColor(R.color.c_white));
-                                tvConnection.setTextColor(getResources().getColor(R.color.c_white));
-                            }
-
-                            updateHashrate(speed, max);
                         });
                     }
                 });
@@ -1710,9 +1706,11 @@ public class MainActivity extends BaseActivity
         RequestQueue queue = Volley.newRequestQueue(this);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, uri,
-                response -> {
-                    try {
-                        Log.i(LOG_TAG, "AMAYC response: " + response);
+                new com.android.volley.Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            Log.i(LOG_TAG, "AMAYC response: " + response);
 
                         JSONObject obj = new JSONObject(response);
 
@@ -1749,7 +1747,13 @@ public class MainActivity extends BaseActivity
                     } catch (Exception e) {
                         disableAmaycOnError("AMAYC response: " + e.getMessage());
                     }
-                }, this::parseVolleyError);
+                }
+            }, new com.android.volley.Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        parseVolleyError(error);
+                    }
+                });
 
         queue.add(stringRequest);
     }
