@@ -69,7 +69,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: xfg-android-miner-${{ matrix.api-level }}-${{ matrix.build-type }}
-        path: app/build/outputs/apk/${{ matrix.build-type }}/app-${{ matrix.build-type }}.apk
+        path: app/build/outputs/apk/${{ matrix.build-type }}/app-${{ matrix.build-type == 'debug' && 'debug' || 'release-unsigned' }}.apk
 
   security-scan:
     runs-on: ubuntu-latest
@@ -127,15 +127,11 @@ jobs:
     - name: Build Release APK
       run: ./gradlew assembleRelease
 
-    - name: Download all artifacts
-      uses: actions/download-artifact@v4
-
     - name: Create Release
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          app/build/outputs/apk/release/app-release.apk
-          **/*.apk
+          app/build/outputs/apk/release/app-release-unsigned.apk
         generate_release_notes: true
         draft: false
         prerelease: false
