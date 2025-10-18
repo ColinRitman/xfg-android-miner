@@ -37,6 +37,9 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
+    - name: Set up Android SDK
+      uses: android-actions/setup-android@v3
+
     - name: Cache Gradle packages
       uses: actions/cache@v4
       with:
@@ -61,8 +64,6 @@ jobs:
 
     - name: Build APK
       run: ./gradlew assemble${{ matrix.build-type == 'debug' && 'Debug' || 'Release' }}
-      env:
-        ANDROID_SDK_ROOT: ${{ secrets.ANDROID_SDK_ROOT }}
 
     - name: Upload APK artifact
       uses: actions/upload-artifact@v4
@@ -84,6 +85,9 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
+    - name: Set up Android SDK
+      uses: android-actions/setup-android@v3
+
     - name: Run security scan
       run: |
         ./gradlew dependencyCheckAnalyze || true
@@ -104,6 +108,9 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
+    - name: Set up Android SDK
+      uses: android-actions/setup-android@v3
+
     - name: Cache Gradle packages
       uses: actions/cache@v4
       with:
@@ -119,8 +126,6 @@ jobs:
 
     - name: Build Release APK
       run: ./gradlew assembleRelease
-      env:
-        ANDROID_SDK_ROOT: ${{ secrets.ANDROID_SDK_ROOT }}
 
     - name: Download all artifacts
       uses: actions/download-artifact@v4
