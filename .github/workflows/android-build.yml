@@ -124,8 +124,17 @@ jobs:
     - name: Make gradlew executable
       run: chmod +x gradlew
 
+    - name: Generate keystore
+      run: |
+        keytool -genkey -v -keystore xfg-android-release-key.keystore -alias xfg-android-key -keyalg RSA -keysize 2048 -validity 10000 -storepass android -keypass android -dname "CN=XFG Android, OU=Development, O=Fuego, L=Unknown, S=Unknown, C=US"
+
     - name: Build Release APK
-      run: ./gradlew assembleRelease
+      run: |
+        ./gradlew assembleRelease \
+          -PMYAPP_RELEASE_STORE_FILE=xfg-android-release-key.keystore \
+          -PMYAPP_RELEASE_KEY_ALIAS=xfg-android-key \
+          -PMYAPP_RELEASE_STORE_PASSWORD=android \
+          -PMYAPP_RELEASE_KEY_PASSWORD=android
 
     - name: Get version from build.gradle
       id: get_version
@@ -135,7 +144,7 @@ jobs:
 
     - name: Rename APK with version
       run: |
-        cp app/build/outputs/apk/release/app-release-unsigned.apk xfg-android-${{ steps.get_version.outputs.version }}.apk
+        cp app/build/outputs/apk/release/app-release.apk xfg-android-${{ steps.get_version.outputs.version }}.apk
 
     - name: Create Release
       uses: softprops/action-gh-release@v1
