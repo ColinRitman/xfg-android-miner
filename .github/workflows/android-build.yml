@@ -127,11 +127,21 @@ jobs:
     - name: Build Release APK
       run: ./gradlew assembleRelease
 
+    - name: Get version from build.gradle
+      id: get_version
+      run: |
+        VERSION=$(grep "versionName" app/build.gradle | sed 's/.*versionName "\(.*\)".*/\1/')
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+    - name: Rename APK with version
+      run: |
+        cp app/build/outputs/apk/release/app-release-unsigned.apk xfg-android-${{ steps.get_version.outputs.version }}.apk
+
     - name: Create Release
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          app/build/outputs/apk/release/app-release-unsigned.apk
+          xfg-android-${{ steps.get_version.outputs.version }}.apk
         generate_release_notes: true
         draft: false
         prerelease: false
