@@ -69,7 +69,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: xfg-android-miner-${{ matrix.api-level }}-${{ matrix.build-type }}
-        path: app/build/outputs/apk/${{ matrix.build-type }}/app-${{ matrix.build-type == 'debug' && 'debug' || 'release-unsigned' }}.apk
+        path: app/build/outputs/apk/${{ matrix.build-type }}/app-${{ matrix.build-type == 'debug' && 'debug' || 'release' }}.apk
 
   security-scan:
     runs-on: ubuntu-latest
@@ -124,14 +124,33 @@ jobs:
     - name: Make gradlew executable
       run: chmod +x gradlew
 
+    - name: Generate keystore
+      run: |
+        keytool -genkey -v -keystore xfg-android-release-key.keystore -alias xfg-android-key -keyalg RSA -keysize 2048 -validity 10000 -storepass android -keypass android -dname "CN=XFG Android, OU=Development, O=Fuego, L=Unknown, S=Unknown, C=US"
+
     - name: Build Release APK
-      run: ./gradlew assembleRelease
+      run: |
+        ./gradlew assembleRelease \
+          -PMYAPP_RELEASE_STORE_FILE=xfg-android-release-key.keystore \
+          -PMYAPP_RELEASE_KEY_ALIAS=xfg-android-key \
+          -PMYAPP_RELEASE_STORE_PASSWORD=android \
+          -PMYAPP_RELEASE_KEY_PASSWORD=android
+
+    - name: Get version from build.gradle
+      id: get_version
+      run: |
+        VERSION=$(grep "versionName" app/build.gradle | sed 's/.*versionName "\(.*\)".*/\1/')
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+    - name: Rename APK with version
+      run: |
+        cp app/build/outputs/apk/release/app-release.apk xfg-android-${{ steps.get_version.outputs.version }}.apk
 
     - name: Create Release
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          app/build/outputs/apk/release/app-release-unsigned.apk
+          xfg-android-${{ steps.get_version.outputs.version }}.apk
         generate_release_notes: true
         draft: false
         prerelease: false
