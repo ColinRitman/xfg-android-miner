@@ -69,7 +69,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: xfg-android-miner-${{ matrix.api-level }}-${{ matrix.build-type }}
-        path: app/build/outputs/apk/${{ matrix.build-type }}/app-${{ matrix.build-type == 'debug' && 'debug' || 'release-unsigned' }}.apk
+        path: app/build/outputs/apk/${{ matrix.build-type }}/app-${{ matrix.build-type == 'debug' && 'debug' || 'release' }}.apk
 
   security-scan:
     runs-on: ubuntu-latest
