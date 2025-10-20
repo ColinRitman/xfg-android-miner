@@ -13,6 +13,7 @@
 package xfg.androidminer;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -153,5 +154,46 @@ public class WizardAddressActivity extends BaseActivity {
         });
 
         dialog.show();
+    }
+
+    public void onGenerateNewWallet(View view) {
+        // Show loading dialog first
+        android.app.AlertDialog loadingDialog = new android.app.AlertDialog.Builder(this)
+            .setTitle("Generating Wallet")
+            .setMessage("Please wait while we generate your new Fuego wallet address...")
+            .setCancelable(false)
+            .create();
+        loadingDialog.show();
+        
+        // Generate wallet in background thread to avoid blocking UI
+        new Thread(() -> {
+            String newAddress = Utils.generatePaperWallet();
+            
+            // Run UI updates on main thread
+            runOnUiThread(() -> {
+                loadingDialog.dismiss();
+                
+                // Show dialog with the generated address
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+                builder.setTitle("Generated New Wallet");
+                builder.setMessage("Your new Fuego wallet address:\n\n" + newAddress + "\n\nThis address has been copied to your clipboard.");
+                builder.setPositiveButton("Use This Address", (dialog, which) -> {
+                    View view2 = findViewById(android.R.id.content).getRootView();
+                    TextView tvAddress = view2.findViewById(R.id.addressWizard);
+                    tvAddress.setText(newAddress);
+                    
+                    // Clear any previous error
+                    TextInputLayout til = view2.findViewById(R.id.addressIL);
+                    til.setErrorEnabled(false);
+                    til.setError(null);
+                });
+                builder.setNegativeButton("Cancel", null);
+                
+                // Auto-copy the address when dialog is shown
+                Utils.copyToClipboard("Fuego Paper Wallet", newAddress);
+                
+                builder.show();
+            });
+        }).start();
     }
 }

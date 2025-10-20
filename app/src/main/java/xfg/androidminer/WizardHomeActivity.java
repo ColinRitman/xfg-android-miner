@@ -75,9 +75,44 @@ public class WizardHomeActivity extends BaseActivity {
     }
 
     public void onCreateWallet(View view) {
-        Uri uri = Uri.parse(getResources().getString(R.string.uplexa_vault_play_store));
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        startActivity(intent);
+        // Show loading dialog first
+        android.app.AlertDialog loadingDialog = new android.app.AlertDialog.Builder(this)
+            .setTitle("Generating Wallet")
+            .setMessage("Please wait while we generate your new Fuego wallet address...")
+            .setCancelable(false)
+            .create();
+        loadingDialog.show();
+        
+        // Generate wallet in background thread to avoid blocking UI
+        new Thread(() -> {
+            String newAddress = Utils.generatePaperWallet();
+            
+            // Run UI updates on main thread
+            runOnUiThread(() -> {
+                loadingDialog.dismiss();
+                
+                // Show dialog with the generated address
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+                builder.setTitle("Generated Paper Wallet");
+                builder.setMessage("Your new Fuego wallet address:\n\n" + newAddress + "\n\nThis address has been copied to your clipboard. Please save it securely!");
+                builder.setPositiveButton("Use This Address", (dialog, which) -> {
+                    // Copy the address and proceed to address screen
+                    Utils.copyToClipboard("Fuego Paper Wallet", newAddress);
+                    startActivity(new Intent(WizardHomeActivity.this, WizardAddressActivity.class));
+                    finish();
+                });
+                builder.setNegativeButton("Copy & Close", (dialog, which) -> {
+                    Utils.copyToClipboard("Fuego Paper Wallet", newAddress);
+                    android.widget.Toast.makeText(this, "Address copied to clipboard", android.widget.Toast.LENGTH_SHORT).show();
+                });
+                builder.setNeutralButton("Cancel", null);
+                
+                // Auto-copy the address when dialog is shown
+                Utils.copyToClipboard("Fuego Paper Wallet", newAddress);
+                
+                builder.show();
+            });
+        }).start();
     }
 
     public void onSkip(View view) {

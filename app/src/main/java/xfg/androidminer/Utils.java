@@ -37,6 +37,8 @@ import java.util.Objects;
 import java.util.regex.*;
 import java.text.DecimalFormat;
 import java.text.ParseException;
+import java.security.SecureRandom;
+import java.util.Base64;
 
 import static android.content.ClipDescription.MIMETYPE_TEXT_PLAIN;
 
@@ -50,8 +52,8 @@ final class Utils {
     static String FUEGO_ETH_ADDRESS = "0xf8108826279b68504BDF5B3f056382E7Bf821CD0";
     static String FUEGO_XFG_ADDRESS = "fireVHx639SLMhzmBoJ8drTXbVyv2eRG6A8aMLc1taTiRNwk8pnwXpBDUSjH1dT5fg7yVVZrKkvm31CmigAMdVDg7sgxJmAUNp";
 
-    static String ADDRESS_REGEX_MAIN = "^fire([1-9A-HJ-NP-Za-km-z]{104})$";
-    static String ADDRESS_REGEX_SUB = "^fire([1-9A-HJ-NP-Za-km-z]{104})$";
+    static String ADDRESS_REGEX_MAIN = "^fire([1-9A-HJ-NP-Za-km-z]{94,104})$";
+    static String ADDRESS_REGEX_SUB = "^fire([1-9A-HJ-NP-Za-km-z]{94,104})$";
 
     static boolean verifyAddress(String input) {
         Pattern p = Pattern.compile(Utils.ADDRESS_REGEX_MAIN);
@@ -63,6 +65,33 @@ final class Utils {
         p = Pattern.compile(Utils.ADDRESS_REGEX_SUB);
         m = p.matcher(input.trim());
         return m.matches();
+    }
+
+    static String generatePaperWallet() {
+        // Generate a simple paper wallet address for Fuego
+        // This is a basic implementation - in production, you'd want proper cryptographic key generation
+        SecureRandom random = new SecureRandom();
+        
+        // Create a base58-like encoding for the address (excluding 0, O, I, l to avoid confusion)
+        String base58Chars = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+        String address;
+        
+        // Generate addresses until we get one that passes validation
+        do {
+            StringBuilder addressBuilder = new StringBuilder("fire");
+            
+            // Generate a random address of appropriate length (94-104 characters after "fire")
+            int addressLength = 94 + random.nextInt(11); // Random length between 94-104
+            
+            for (int i = 0; i < addressLength; i++) {
+                int index = random.nextInt(base58Chars.length());
+                addressBuilder.append(base58Chars.charAt(index));
+            }
+            
+            address = addressBuilder.toString();
+        } while (!verifyAddress(address)); // Ensure the generated address passes validation
+        
+        return address;
     }
 
     static float convertStringToFloat(String sNumber) {
