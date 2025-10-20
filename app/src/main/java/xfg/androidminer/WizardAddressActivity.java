@@ -174,44 +174,4 @@ public class WizardAddressActivity extends BaseActivity {
         dialog.show();
     }
 
-    public void onGenerateNewWallet(View view) {
-        // Show loading dialog first
-        android.app.AlertDialog loadingDialog = new android.app.AlertDialog.Builder(this)
-            .setTitle(getString(R.string.generating_wallet))
-            .setMessage(getString(R.string.generating_wallet_message))
-            .setCancelable(false)
-            .create();
-        loadingDialog.show();
-        
-        // Generate wallet in background thread to avoid blocking UI
-        new Thread(() -> {
-            String newAddress = Utils.generatePaperWallet();
-            
-            // Run UI updates on main thread
-            runOnUiThread(() -> {
-                loadingDialog.dismiss();
-                
-                // Show dialog with the generated address
-                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
-                builder.setTitle(getString(R.string.generated_wallet_title));
-                builder.setMessage(String.format(getString(R.string.generated_wallet_message), newAddress));
-                builder.setPositiveButton(getString(R.string.use_this_address), (dialog, which) -> {
-                    View view2 = findViewById(android.R.id.content).getRootView();
-                    TextView tvAddress = view2.findViewById(R.id.addressWizard);
-                    tvAddress.setText(newAddress);
-                    
-                    // Clear any previous error
-                    TextInputLayout til = view2.findViewById(R.id.addressIL);
-                    til.setErrorEnabled(false);
-                    til.setError(null);
-                });
-                builder.setNegativeButton(getString(R.string.cancel), null);
-                
-                // Auto-copy the address when dialog is shown
-                Utils.copyToClipboard("Fuego Paper Wallet", newAddress);
-                
-                builder.show();
-            });
-        }).start();
-    }
 }

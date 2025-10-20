@@ -72,10 +72,8 @@
 			android:gravity="end">
 
             <Button
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
                 android:backgroundTint="@color/bg_lighter"
                 android:text="@string/paste"
                 android:textSize="14sp"
@@ -88,22 +86,6 @@
 				app:iconTint="@color/btn_icon_default"
                 app:cornerRadius="5dp" />
 
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="5dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/bg_blue"
-                android:text="@string/generate_new_wallet"
-                android:textSize="14sp"
-                android:textAllCaps="false"
-                android:textColor="@color/txt_button_filled"
-                android:onClick="onGenerateNewWallet"
-                app:icon="@drawable/ic_star"
-                app:iconGravity="textStart"
-                app:iconSize="18dp"
-				app:iconTint="@color/btn_icon_default"
-                app:cornerRadius="5dp" />
 
 		</LinearLayout>
 

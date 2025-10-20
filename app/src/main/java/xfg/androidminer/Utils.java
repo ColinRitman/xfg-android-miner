@@ -37,8 +37,6 @@ import java.util.Objects;
 import java.util.regex.*;
 import java.text.DecimalFormat;
 import java.text.ParseException;
-import java.security.SecureRandom;
-import java.util.Base64;
 
 import static android.content.ClipDescription.MIMETYPE_TEXT_PLAIN;
 
@@ -64,54 +62,6 @@ final class Utils {
         return m.matches();
     }
 
-    static String generatePaperWallet() {
-        // Generate a cryptographically secure paper wallet address for Fuego
-        // This creates a more realistic address by using proper entropy
-        SecureRandom random = new SecureRandom();
-        
-        // Create a base58-like encoding for the address (excluding 0, O, I, l to avoid confusion)
-        String base58Chars = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
-        String address;
-        
-        // Generate addresses until we get one that passes validation
-        // Use a more realistic length distribution (most addresses are around 95-98 chars)
-        int maxAttempts = 100; // Prevent infinite loops
-        int attempts = 0;
-        
-        do {
-            StringBuilder addressBuilder = new StringBuilder("fire");
-            
-            // Generate a more realistic address length (95-98 characters after "fire")
-            // Most Fuego addresses are around 95-97 characters
-            int addressLength = 95 + random.nextInt(4); // Random length between 95-98
-            
-            // Use more entropy by generating random bytes and converting to base58
-            byte[] randomBytes = new byte[addressLength * 2]; // Extra bytes for better distribution
-            random.nextBytes(randomBytes);
-            
-            for (int i = 0; i < addressLength; i++) {
-                int index = Math.abs(randomBytes[i]) % base58Chars.length();
-                addressBuilder.append(base58Chars.charAt(index));
-            }
-            
-            address = addressBuilder.toString();
-            attempts++;
-        } while (!verifyAddress(address) && attempts < maxAttempts); // Ensure the generated address passes validation
-        
-        // If we couldn't generate a valid address after max attempts, fall back to simple generation
-        if (attempts >= maxAttempts) {
-            StringBuilder addressBuilder = new StringBuilder("fire");
-            int addressLength = 95 + random.nextInt(4);
-            
-            for (int i = 0; i < addressLength; i++) {
-                int index = random.nextInt(base58Chars.length());
-                addressBuilder.append(base58Chars.charAt(index));
-            }
-            address = addressBuilder.toString();
-        }
-        
-        return address;
-    }
 
     static float convertStringToFloat(String sNumber) {
         float total = (float) -1;
