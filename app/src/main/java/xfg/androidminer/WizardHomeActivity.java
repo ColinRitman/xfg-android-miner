@@ -77,8 +77,8 @@ public class WizardHomeActivity extends BaseActivity {
     public void onCreateWallet(View view) {
         // Show loading dialog first
         android.app.AlertDialog loadingDialog = new android.app.AlertDialog.Builder(this)
-            .setTitle("Generating Wallet")
-            .setMessage("Please wait while we generate your new Fuego wallet address...")
+            .setTitle(getString(R.string.generating_wallet))
+            .setMessage(getString(R.string.generating_wallet_message))
             .setCancelable(false)
             .create();
         loadingDialog.show();
@@ -93,19 +93,19 @@ public class WizardHomeActivity extends BaseActivity {
                 
                 // Show dialog with the generated address
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
-                builder.setTitle("Generated Paper Wallet");
-                builder.setMessage("Your new Fuego wallet address:\n\n" + newAddress + "\n\nThis address has been copied to your clipboard. Please save it securely!");
-                builder.setPositiveButton("Use This Address", (dialog, which) -> {
+                builder.setTitle(getString(R.string.generated_wallet_title));
+                builder.setMessage(String.format(getString(R.string.generated_wallet_message), newAddress));
+                builder.setPositiveButton(getString(R.string.use_this_address), (dialog, which) -> {
                     // Copy the address and proceed to address screen
                     Utils.copyToClipboard("Fuego Paper Wallet", newAddress);
                     startActivity(new Intent(WizardHomeActivity.this, WizardAddressActivity.class));
                     finish();
                 });
-                builder.setNegativeButton("Copy & Close", (dialog, which) -> {
+                builder.setNegativeButton(getString(R.string.copy_and_close), (dialog, which) -> {
                     Utils.copyToClipboard("Fuego Paper Wallet", newAddress);
-                    android.widget.Toast.makeText(this, "Address copied to clipboard", android.widget.Toast.LENGTH_SHORT).show();
+                    android.widget.Toast.makeText(this, getString(R.string.address_copied_to_clipboard), android.widget.Toast.LENGTH_SHORT).show();
                 });
-                builder.setNeutralButton("Cancel", null);
+                builder.setNeutralButton(getString(R.string.cancel), null);
                 
                 // Auto-copy the address when dialog is shown
                 Utils.copyToClipboard("Fuego Paper Wallet", newAddress);

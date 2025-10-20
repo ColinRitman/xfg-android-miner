@@ -64,7 +64,7 @@ public class QrCodeScannerActivity extends AppCompatActivity implements BarcodeR
     @Override
     public void onRetrieved(final Barcode barcode) {
         String miner = barcode.displayValue;
-        scanResult.setText("Fuego XFG Address : " + miner);
+        scanResult.setText(getString(R.string.fuego_xfg_address) + " : " + miner);
         if(Utils.verifyAddress(miner)) {
             Log.d("CONSOLE:QRCODE", "Barcode read: " + barcode.displayValue);
 
@@ -76,7 +76,7 @@ public class QrCodeScannerActivity extends AppCompatActivity implements BarcodeR
             return;
         }
 
-        Toast.makeText(MainActivity.contextOfApplication, "Invalid Fuego address", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.contextOfApplication, getString(R.string.invalid_fuego_address), Toast.LENGTH_SHORT).show();
     }
 
     @Override

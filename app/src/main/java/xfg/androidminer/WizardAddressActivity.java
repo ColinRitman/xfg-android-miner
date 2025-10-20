@@ -45,6 +45,27 @@ public class WizardAddressActivity extends BaseActivity {
         setContentView(R.layout.fragment_wizard_address);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Update address field if it was set by QR code scanner
+        String savedAddress = Config.read("address");
+        if (savedAddress != null && !savedAddress.isEmpty()) {
+            View view2 = findViewById(android.R.id.content).getRootView();
+            TextView tvAddress = view2.findViewById(R.id.addressWizard);
+            if (tvAddress != null) {
+                tvAddress.setText(savedAddress);
+                
+                // Clear any previous error
+                TextInputLayout til = view2.findViewById(R.id.addressIL);
+                if (til != null) {
+                    til.setErrorEnabled(false);
+                    til.setError(null);
+                }
+            }
+        }
+    }
+
     public void onPaste(View view) {
         View view2 = findViewById(android.R.id.content).getRootView();
 
@@ -76,9 +97,6 @@ public class WizardAddressActivity extends BaseActivity {
         try {
             Intent intent = new Intent(appContext, QrCodeScannerActivity.class);
             startActivity(intent);
-
-            TextView tvAddress = view2.findViewById(R.id.address);
-            tvAddress.setText(Config.read("address"));
         } catch (Exception e) {
             Toast.makeText(appContext, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
@@ -159,8 +177,8 @@ public class WizardAddressActivity extends BaseActivity {
     public void onGenerateNewWallet(View view) {
         // Show loading dialog first
         android.app.AlertDialog loadingDialog = new android.app.AlertDialog.Builder(this)
-            .setTitle("Generating Wallet")
-            .setMessage("Please wait while we generate your new Fuego wallet address...")
+            .setTitle(getString(R.string.generating_wallet))
+            .setMessage(getString(R.string.generating_wallet_message))
             .setCancelable(false)
             .create();
         loadingDialog.show();
@@ -175,9 +193,9 @@ public class WizardAddressActivity extends BaseActivity {
                 
                 // Show dialog with the generated address
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
-                builder.setTitle("Generated New Wallet");
-                builder.setMessage("Your new Fuego wallet address:\n\n" + newAddress + "\n\nThis address has been copied to your clipboard.");
-                builder.setPositiveButton("Use This Address", (dialog, which) -> {
+                builder.setTitle(getString(R.string.generated_wallet_title));
+                builder.setMessage(String.format(getString(R.string.generated_wallet_message), newAddress));
+                builder.setPositiveButton(getString(R.string.use_this_address), (dialog, which) -> {
                     View view2 = findViewById(android.R.id.content).getRootView();
                     TextView tvAddress = view2.findViewById(R.id.addressWizard);
                     tvAddress.setText(newAddress);
@@ -187,7 +205,7 @@ public class WizardAddressActivity extends BaseActivity {
                     til.setErrorEnabled(false);
                     til.setError(null);
                 });
-                builder.setNegativeButton("Cancel", null);
+                builder.setNegativeButton(getString(R.string.cancel), null);
                 
                 // Auto-copy the address when dialog is shown
                 Utils.copyToClipboard("Fuego Paper Wallet", newAddress);
