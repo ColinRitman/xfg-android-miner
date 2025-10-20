@@ -12,10 +12,14 @@
 
 package xfg.androidminer;
 
+import android.Manifest;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -23,8 +27,15 @@ import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class WizardHomeActivity extends BaseActivity {
     @Override
@@ -69,51 +80,106 @@ public class WizardHomeActivity extends BaseActivity {
         tvDisclaimer.setHighlightColor(Color.TRANSPARENT);
     }
 
-    public void onEnterAddress(View view) {
-        startActivity(new Intent(WizardHomeActivity.this, WizardAddressActivity.class));
+    public void onPaste(View view) {
+        View view2 = findViewById(android.R.id.content).getRootView();
+        TextInputEditText etAddress = view2.findViewById(R.id.addressWizard);
+        etAddress.setText(Utils.pasteFromClipboard(WizardHomeActivity.this));
+    }
+
+    public void onScanQrCode(View view) {
+        Context appContext = WizardHomeActivity.this;
+
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (ContextCompat.checkSelfPermission(appContext, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.CAMERA}, 100);
+            }
+            else {
+                startQrCodeActivity();
+            }
+        }
+        else {
+            Toast.makeText(appContext, "This version of Android does not support Qr Code.", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void startQrCodeActivity() {
+        View view2 = findViewById(android.R.id.content).getRootView();
+
+        Context appContext = WizardHomeActivity.this;
+
+        try {
+            Intent intent = new Intent(appContext, QrCodeScannerActivity.class);
+            startActivity(intent);
+        } catch (Exception e) {
+            Toast.makeText(appContext, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        Context appContext = WizardHomeActivity.this;
+
+        if (requestCode == 100) {
+            if (permissions[0].equals(Manifest.permission.CAMERA) && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                startQrCodeActivity();
+            }
+            else {
+                Toast.makeText(appContext,"Camera Permission Denied.", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    public void onNext(View view) {
+        View view2 = findViewById(android.R.id.content).getRootView();
+
+        TextView tvAddress = view2.findViewById(R.id.addressWizard);
+        String strAddress = tvAddress.getText().toString();
+
+        TextInputLayout til = view2.findViewById(R.id.addressIL);
+
+        if(strAddress.isEmpty() || !Utils.verifyAddress(strAddress)) {
+            til.setErrorEnabled(true);
+            til.setError(getResources().getString(R.string.invalidaddress));
+            requestFocus(tvAddress);
+            return;
+        }
+
+        til.setErrorEnabled(false);
+        til.setError(null);
+
+        Config.write("address", strAddress);
+
+        startActivity(new Intent(WizardHomeActivity.this, WizardPoolActivity.class));
         finish();
     }
 
-    public void onCreateWallet(View view) {
-        // Show loading dialog first
-        android.app.AlertDialog loadingDialog = new android.app.AlertDialog.Builder(this)
-            .setTitle(getString(R.string.generating_wallet))
-            .setMessage(getString(R.string.generating_wallet_message))
-            .setCancelable(false)
-            .create();
-        loadingDialog.show();
-        
-        // Generate wallet in background thread to avoid blocking UI
-        new Thread(() -> {
-            String newAddress = Utils.generatePaperWallet();
-            
-            // Run UI updates on main thread
-            runOnUiThread(() -> {
-                loadingDialog.dismiss();
-                
-                // Show dialog with the generated address
-                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
-                builder.setTitle(getString(R.string.generated_wallet_title));
-                builder.setMessage(String.format(getString(R.string.generated_wallet_message), newAddress));
-                builder.setPositiveButton(getString(R.string.use_this_address), (dialog, which) -> {
-                    // Copy the address and proceed to address screen
-                    Utils.copyToClipboard("Fuego Paper Wallet", newAddress);
-                    startActivity(new Intent(WizardHomeActivity.this, WizardAddressActivity.class));
-                    finish();
-                });
-                builder.setNegativeButton(getString(R.string.copy_and_close), (dialog, which) -> {
-                    Utils.copyToClipboard("Fuego Paper Wallet", newAddress);
-                    android.widget.Toast.makeText(this, getString(R.string.address_copied_to_clipboard), android.widget.Toast.LENGTH_SHORT).show();
-                });
-                builder.setNeutralButton(getString(R.string.cancel), null);
-                
-                // Auto-copy the address when dialog is shown
-                Utils.copyToClipboard("Fuego Paper Wallet", newAddress);
-                
-                builder.show();
-            });
-        }).start();
+    private void requestFocus(View view) {
+        if (view.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Update address field if it was set by QR code scanner
+        String savedAddress = Config.read("address");
+        if (savedAddress != null && !savedAddress.isEmpty()) {
+            View view2 = findViewById(android.R.id.content).getRootView();
+            TextView tvAddress = view2.findViewById(R.id.addressWizard);
+            if (tvAddress != null) {
+                tvAddress.setText(savedAddress);
+                
+                // Clear any previous error
+                TextInputLayout til = view2.findViewById(R.id.addressIL);
+                if (til != null) {
+                    til.setErrorEnabled(false);
+                    til.setError(null);
+                }
+            }
+        }
+    }
+
 
     public void onSkip(View view) {
         startActivity(new Intent(WizardHomeActivity.this, MainActivity.class));

@@ -107,7 +107,6 @@
     <string name="workernamehint">Worker name or password</string>
     <string name="landingpage_headline">Mine your android devices harmlessly and efficiently</string>
     <string name="landingpage_introduction">Fuego Android Miner provides useful information about your mining activities and prevents your device from overheating.</string>
-    <string name="createaddress">Get a wallet</string>
     <string name="disclaimer_agreement">By using this application, you confirm your knowledge and acceptance of the Disclaimer</string>
     <string name="paper">Paper</string>
     <string name="or">or</string>
@@ -182,14 +181,6 @@
     <string name="yes">Yes</string>
     <string name="avg">AVG</string>
     <string name="resume">Resume</string>
-    <string name="generate_new_wallet">Generate New</string>
-    <string name="generated_wallet_title">Generated Paper Wallet</string>
-    <string name="generated_wallet_message">Your new Fuego wallet address:\n\n%s\n\nThis address has been copied to your clipboard. Please save it securely!</string>
-    <string name="use_this_address">Use This Address</string>
-    <string name="copy_and_close">Copy &amp; Close</string>
-    <string name="generating_wallet">Generating Wallet</string>
-    <string name="generating_wallet_message">Please wait while we generate your new Fuego wallet address...</string>
-    <string name="address_copied_to_clipboard">Address copied to clipboard</string>
     <string name="fuego_xfg_address">Fuego XFG Address</string>
     <string name="invalid_fuego_address">Invalid Fuego address</string>
 </resources>
