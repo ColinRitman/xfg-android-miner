@@ -2,44 +2,29 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
+	android:layout_height="match_parent"
 	android:background="@color/bg_body">
+
+	<!-- Faded Fuego logo in background -->
+	<ImageView
+		android:id="@+id/fuego_logo_background"
+		android:layout_width="300dp"
+		android:layout_height="225dp"
+		android:layout_centerInParent="true"
+		android:src="@drawable/fuegold"
+		android:alpha="0.1"
+		android:scaleType="centerInside" />
 
 	<LinearLayout
 		android:orientation="vertical"
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
-		android:layout_marginStart="35dp"
-		android:layout_marginEnd="35dp"
-		android:weightSum="80">
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_marginStart="20dp"
+		android:layout_marginEnd="20dp"
+		android:layout_marginTop="40dp"
+		android:layout_marginBottom="20dp">
 
-		<Space
-			android:layout_width="0dp"
-			android:layout_height="0dp"
-			android:layout_weight="20"/>
-
-		<LinearLayout
-			android:orientation="vertical"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:background="@color/bg_body">
-
-            <ImageView
-				android:id="@+id/splashscreen"
-				android:layout_width="200dp"
-				android:layout_height="150dp"
-                android:src="@drawable/fuegold"/>
-
-
-
-		</LinearLayout>
-
-		<Space
-			android:layout_width="0dp"
-			android:layout_height="0dp"
-			android:layout_weight="10" />
-
+		<!-- Header -->
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
@@ -48,71 +33,145 @@
 			android:textColor="@color/txt_headline"
 			android:textStyle="bold"
 			android:textAlignment="center"
-			android:textSize="22sp" />
+			android:textSize="24sp"
+			android:layout_marginBottom="10dp" />
 
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
-			android:layout_marginTop="20dp"
 			android:text="@string/landingpage_introduction"
 			android:textColor="@color/txt_secondary"
 			android:textAlignment="center"
-			android:textSize="14sp" />
+			android:textSize="16sp"
+			android:layout_marginBottom="40dp" />
 
-		<Space
-			android:layout_width="0dp"
-			android:layout_height="0dp"
-			android:layout_weight="10" />
-
-		<Button
-			android:id="@+id/enterWalletAddress"
+		<!-- Address Input Section -->
+		<LinearLayout
+			android:orientation="vertical"
 			android:layout_width="match_parent"
-			android:layout_height="55dp"
-			android:layout_gravity="center"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="20dp">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/walletaddress2"
+				android:textColor="@color/txt_headline"
+				android:textSize="18sp"
+				android:textStyle="bold"
+				android:layout_marginBottom="10dp" />
+
+			<com.google.android.material.textfield.TextInputLayout
+				android:id="@+id/addressIL"
+				style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				app:errorTextAppearance="@style/TextErrorStyle"
+				app:errorEnabled="false">
+
+				<com.google.android.material.textfield.TextInputEditText
+					android:id="@+id/addressWizard"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:textSize="14sp"
+					android:hint="@string/specifywalletaddress" />
+
+			</com.google.android.material.textfield.TextInputLayout>
+
+		</LinearLayout>
+
+		<!-- Action Buttons -->
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="20dp">
+
+			<Button
+				android:layout_width="0dp"
+				android:layout_height="50dp"
+				android:layout_weight="1"
+				android:layout_marginEnd="10dp"
+				android:backgroundTint="@color/bg_lighter"
+				android:text="@string/paste"
+				android:textSize="14sp"
+				android:textAllCaps="false"
+				android:textColor="@color/txt_button_filled"
+				android:onClick="onPaste"
+				app:icon="@drawable/ic_paste"
+				app:iconGravity="textStart"
+				app:iconSize="18dp"
+				app:iconTint="@color/btn_icon_default"
+				app:cornerRadius="5dp" />
+
+			<Button
+				android:layout_width="0dp"
+				android:layout_height="50dp"
+				android:layout_weight="1"
+				android:layout_marginStart="10dp"
+				android:backgroundTint="@color/bg_blue"
+				android:text="@string/scanqrcode"
+				android:textSize="14sp"
+				android:textAllCaps="false"
+				android:textColor="@color/txt_button_filled"
+				android:onClick="onScanQrCode"
+				app:icon="@drawable/ic_qrcode"
+				app:iconGravity="textStart"
+				app:iconSize="18dp"
+				app:iconTint="@color/btn_icon_default"
+				app:cornerRadius="5dp" />
+
+		</LinearLayout>
+
+		<!-- Donate Button -->
+		<Button
+			android:id="@+id/btnMineuPlexa"
+			android:layout_width="match_parent"
+			android:layout_height="50dp"
+			android:layout_marginBottom="20dp"
 			android:backgroundTint="@color/bg_blue"
-			android:onClick="onEnterAddress"
-			android:text="@string/enteraddress"
+			android:text="@string/supportproject"
 			android:textSize="14sp"
 			android:textAllCaps="false"
 			android:textColor="@color/txt_button_filled"
+			android:onClick="onMineuPlexa"
+			app:icon="@drawable/ic_star"
+			app:iconGravity="textStart"
+			app:iconSize="18dp"
+			app:iconTint="@color/btn_icon_default"
 			app:cornerRadius="5dp" />
 
+		<!-- Next Button -->
 		<Button
-			android:id="@+id/createWalletAddress"
+			android:id="@+id/saveSettings"
 			android:layout_width="match_parent"
 			android:layout_height="55dp"
-			android:layout_gravity="center"
-			android:onClick="onCreateWallet"
-			android:text="@string/createaddress"
-			android:textSize="14sp"
+			android:backgroundTint="@color/bg_blue"
+			android:onClick="onNext"
+			android:text="@string/next"
+			android:textSize="16sp"
 			android:textAllCaps="false"
-			android:textColor="@color/c_white"
-			app:backgroundTint="@android:color/transparent"
-			app:strokeColor="@color/txt_button_filled"
-			app:strokeWidth="1dp"
-			app:cornerRadius="5dp" />
+			android:textColor="@color/txt_button_filled"
+			app:cornerRadius="7.5dp" />
 
-	</LinearLayout>
+		<!-- Spacer to push disclaimer to bottom -->
+		<Space
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			android:layout_weight="1" />
 
-	<RelativeLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_alignParentBottom="true">
-
+		<!-- Disclaimer -->
 		<TextView
 			android:id="@+id/disclaimer"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
-			android:layout_marginBottom="35dp"
-			android:layout_marginStart="35dp"
-			android:layout_marginEnd="35dp"
 			android:text="@string/disclaimer_agreement"
 			android:textColor="@color/txt_main"
 			android:textAlignment="center"
-			android:textSize="14sp" />
+			android:textSize="12sp" />
 
-	</RelativeLayout>
+	</LinearLayout>
 
 </RelativeLayout>

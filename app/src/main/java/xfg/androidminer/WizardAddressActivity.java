@@ -13,6 +13,7 @@
 package xfg.androidminer;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -42,6 +43,27 @@ public class WizardAddressActivity extends BaseActivity {
         }
 
         setContentView(R.layout.fragment_wizard_address);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Update address field if it was set by QR code scanner
+        String savedAddress = Config.read("address");
+        if (savedAddress != null && !savedAddress.isEmpty()) {
+            View view2 = findViewById(android.R.id.content).getRootView();
+            TextView tvAddress = view2.findViewById(R.id.addressWizard);
+            if (tvAddress != null) {
+                tvAddress.setText(savedAddress);
+                
+                // Clear any previous error
+                TextInputLayout til = view2.findViewById(R.id.addressIL);
+                if (til != null) {
+                    til.setErrorEnabled(false);
+                    til.setError(null);
+                }
+            }
+        }
     }
 
     public void onPaste(View view) {
@@ -75,9 +97,6 @@ public class WizardAddressActivity extends BaseActivity {
         try {
             Intent intent = new Intent(appContext, QrCodeScannerActivity.class);
             startActivity(intent);
-
-            TextView tvAddress = view2.findViewById(R.id.address);
-            tvAddress.setText(Config.read("address"));
         } catch (Exception e) {
             Toast.makeText(appContext, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
@@ -154,4 +173,5 @@ public class WizardAddressActivity extends BaseActivity {
 
         dialog.show();
     }
+
 }
