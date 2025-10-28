@@ -64,7 +64,8 @@ public class Config {
         if(!mSettings.mConfigs.containsKey(key)) {
             return "";
         }
-        return mSettings.mConfigs.get(key);
+        String value = mSettings.mConfigs.get(key);
+        return value != null ? value : "";
     }
 
     public Config() {
